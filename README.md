@@ -22,6 +22,10 @@ There are 2 ipa options (The stable version is highly recommended)
 
 Once you downloaded the ipa install it with TrollStore
 
+# Why choose stable?
+
+The stable version is super stable and bootloop should be impossible the stable version also has more themes supported than the unstable version and a cleaner ui
+
 # Why choose unstable?
 
 Unstable has the ability to change the position of the theme icons to match the original app icon place on the Home Screen the stable version cannot
