@@ -24,7 +24,7 @@ Once you downloaded the ipa install it with TrollStore
 
 # Why choose stable?
 
-The stable version is super stable and bootloop should be impossible the stable version also has more themes supported than the unstable version and a cleaner ui
+The stable version is super stable and bootloop should be impossible
 
 # Why choose unstable?
 
