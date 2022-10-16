@@ -7,8 +7,6 @@
 
 @interface LSApplicationWorkspace : NSObject
 - (id)allInstalledApplications;
-- (BOOL)unregisterApplication:(NSURL *)url;
-- (BOOL)registerApplication:(NSURL *)url;
 @end
 
 @interface LSBundleProxy

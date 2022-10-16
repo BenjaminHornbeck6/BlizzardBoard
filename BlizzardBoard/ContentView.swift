@@ -24,7 +24,6 @@ struct ContentView: View {
     @AppStorage("HideLabels") var HideLabels = false
     @AppStorage("DisableWebClipRemoval") var DisableWebClipRemoval = false
     @State var RespringAlert = false
-    @State var ImportTheme = false
     var body: some View {
         NavigationView {
             Form {
@@ -123,23 +122,23 @@ struct ContentView: View {
                         Button {
                             respring()
                         } label: {
-                            Text("Respring")
+                            HStack {
+                                Text("Respring")
+                                Spacer()
+                                Image(systemName: "arrow.clockwise")
+                            }
                         }
                     } header: {
                         Text("Options")
                     } footer: {
-                        Text("Created By Benjamin Hornbeck (@AppInstalleriOS)")
+                        Text("Created By @AppInstalleriOS\nBlizzBoard - Stable \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "") (\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""))")
                     }
                 }
             }
             .navigationTitle("BlizzBoard")
             .navigationBarItems(
                 leading:
-                    Button {
-                        ImportTheme.toggle()
-                    } label: {
-                        Text("Import")
-                    },
+                    EditButton(),
                 trailing:
                     Button {
                         UIApplication.shared.open(URL(string: "https://twitter.com/AppInstalleriOS")!)
@@ -152,15 +151,6 @@ struct ContentView: View {
             )
         }
         .navigationViewStyle(.stack)
-        .fileImporter(isPresented: $ImportTheme, allowedContentTypes: [UTType(filenameExtension: "theme")!], onCompletion: { result in
-            do {
-                let URL = try result.get()
-                try FileManager.default.copyItem(atPath: URL.path, toPath: "/var/mobile/Themes/\(URL.lastPathComponent)")
-                Themes = GetThemes()
-            } catch {
-                print("Error \(error)")
-            }
-        })
         .alert(isPresented: $RespringAlert, content: {
             Alert(title: Text("Respring Now?"), message: Text("In order to take effect you need to respring."), primaryButton: Alert.Button.default(Text("Later")), secondaryButton: Alert.Button.default(Text("Respring"), action: {
                 respring()
